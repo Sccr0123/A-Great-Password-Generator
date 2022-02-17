@@ -79,17 +79,89 @@ function createPassword() {
   return generatedPass;
 };
 
+function checkPassword(currentPassword) {
+  //Check lowerAlpha
+  if (criteria.lowerAlpha === true ) {
+    for (var i = 0; i < currentPassword.length; i++){
+      var result1 = lowerAlphabet.includes(currentPassword.charAt(i));
+      console.log(result1);
+      if (result1 === true) {
+        break;
+      }
+    }
+    if (result1 === false){
+      generatePassword();
+    }
+  }else {
+    var result1 = true;
+  };
+
+  //Check upperAlpha
+  if (criteria.upperAlpha === true ) {
+    for (var i = 0; i < currentPassword.length; i++){
+      var result2 = upperAlphabet.includes(currentPassword.charAt(i));
+      console.log(result2);
+      if (result2 === true) {
+        break;
+      }
+    }
+    if (result2 === false){
+      generatePassword();
+    }
+  }else {
+    var result2 = true;
+  };
+
+  //Check numeral
+  if (criteria.numeral === true ) {
+    for (var i = 0; i < currentPassword.length; i++){
+      var result3 = numbers.includes(currentPassword.charAt(i));
+      console.log(result3);
+      if (result3 === true) {
+        break;
+      }
+    }
+    if (result3 === false){
+      generatePassword();
+    }
+  }else {
+    var result3 = true;
+  };
+
+  //Check symbol
+  if (criteria.symbol === true ) {
+    for (var i = 0; i < currentPassword.length; i++){
+      var result4 = specialCharcters.includes(currentPassword.charAt(i));
+      console.log(result4);
+      if (result4 === true) {
+        break;
+      }
+    }
+    if (result4 === false){
+      generatePassword();
+    }
+  }else {
+    var result4 = true;
+  };
+
+  if (result1 === true && result2 === true && result3 === true && result4 === true) {
+    return currentPassword;
+  }
+};
+
 function generatePassword() {
-  criteria.reset();
-  getCriteria();
   console.log(criteria);
   attempt = createPassword();
-  acceptedPassword = attempt;
+  console.log(attempt);
+  acceptedPassword = checkPassword(attempt);
+
   return acceptedPassword;
 };
 
 // Write password to the #password input
 function writePassword() {
+  criteria.reset();
+  getCriteria();
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
