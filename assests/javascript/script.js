@@ -6,6 +6,8 @@ const specialCharcters = "!@#$%^&*()";
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
+var attempt = "";
+var acceptedPassword = "Test Password";
 
 var criteria = {
   lowerAlpha: false,
@@ -44,11 +46,46 @@ function getCriteria() {
   }
 };
 
+function createPassword() {
+  var availableCharcters = "";
+  var generatedPass = "";
+  attempt = "";
+
+  //Adds lowerAlphabet To Available Characters If Selected
+  if (criteria.lowerAlpha === true) {
+    availableCharcters = availableCharcters + lowerAlphabet;
+  };
+
+  //Adds upperAlphabet To Available Characters If Selected
+  if (criteria.upperAlpha === true) {
+    availableCharcters = availableCharcters + upperAlphabet;
+  };
+
+  //Adds numbers To Available Characters If Selected
+  if (criteria.numeral === true) {
+    availableCharcters = availableCharcters + numbers;
+  };
+
+  //Adds specialCharacters To Available Characters If Selected
+  if (criteria.symbol === true) {
+    availableCharcters = availableCharcters + specialCharcters;
+  };
+
+  //Creates Password With Correct Length
+  for (var i = 0; i < criteria.length; i++){
+    generatedPass = generatedPass + availableCharcters.charAt(Math.floor(Math.random() * availableCharcters.length));
+  }
+
+  return generatedPass;
+};
+
 function generatePassword() {
   criteria.reset();
   getCriteria();
   console.log(criteria);
-
+  attempt = createPassword();
+  acceptedPassword = attempt;
+  return acceptedPassword;
 };
 
 // Write password to the #password input
