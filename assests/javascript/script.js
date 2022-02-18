@@ -84,7 +84,6 @@ function checkPassword(currentPassword) {
   if (criteria.lowerAlpha === true ) {
     for (var i = 0; i < currentPassword.length; i++){
       var result1 = lowerAlphabet.includes(currentPassword.charAt(i));
-      console.log(result1);
       if (result1 === true) {
         break;
       }
@@ -100,7 +99,6 @@ function checkPassword(currentPassword) {
   if (criteria.upperAlpha === true ) {
     for (var i = 0; i < currentPassword.length; i++){
       var result2 = upperAlphabet.includes(currentPassword.charAt(i));
-      console.log(result2);
       if (result2 === true) {
         break;
       }
@@ -116,7 +114,6 @@ function checkPassword(currentPassword) {
   if (criteria.numeral === true ) {
     for (var i = 0; i < currentPassword.length; i++){
       var result3 = numbers.includes(currentPassword.charAt(i));
-      console.log(result3);
       if (result3 === true) {
         break;
       }
@@ -132,7 +129,6 @@ function checkPassword(currentPassword) {
   if (criteria.symbol === true ) {
     for (var i = 0; i < currentPassword.length; i++){
       var result4 = specialCharcters.includes(currentPassword.charAt(i));
-      console.log(result4);
       if (result4 === true) {
         break;
       }
@@ -150,9 +146,8 @@ function checkPassword(currentPassword) {
 };
 
 function generatePassword() {
-  console.log(criteria);
   attempt = createPassword();
-  console.log(attempt);
+
   acceptedPassword = checkPassword(attempt);
 
   return acceptedPassword;
